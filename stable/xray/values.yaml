@@ -37,15 +37,15 @@ networkpolicy:
     ingress:
       - {}
   # Uncomment to allow only xray pods to communicate with postgresql (if postgresql.enabled is true)
-  # - name: postgres
-  #   podSelector:
-  #     matchLabels:
-  #       app: postgresql
-  #   ingress:
-  #   - from:
-  #     - podSelector:
-  #         matchLabels:
-  #           app: xray
+   - name: postgres
+     podSelector:
+       matchLabels:
+         app: postgresql
+     ingress:
+     - from:
+       - podSelector:
+           matchLabels:
+             app: xray
   # Uncomment to allow only xray pods to communicate with mongo (if mongodb.enabled is true)
   # - name: mongo
   #   podSelector:
@@ -114,8 +114,8 @@ postgresql:
   enabled: true
   imageTag: "9.6.11"
   postgresDatabase: "xraydb"
-  postgresUser: "xray"
-  postgresPassword:
+  postgresUser: "postgres"
+  postgresPassword: "pass123"
   postgresConfig:
     maxConnections: "500"
   service:
